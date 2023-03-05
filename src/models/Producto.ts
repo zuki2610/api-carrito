@@ -1,6 +1,6 @@
-import { Schema, model, Types } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 
-interface IProducto {
+export interface IProducto extends Document {
   name: string;
   imagenUrl: string;
   cantidad: number;
@@ -19,4 +19,4 @@ const productoSchema = new Schema<IProducto>({
   },
 });
 
-export default model<IProducto>('Producto', productoSchema);
+export const Producto = model<IProducto>('Producto', productoSchema);
