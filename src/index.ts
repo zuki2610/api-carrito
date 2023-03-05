@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.use('/api/productos', ProductoRouter);
+app.use('/api/mercado', ProductoRouter);
 
 // Serve static files from the "uploads" folder
 app.use('/uploads', express.static('uploads'));

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Types } from 'mongoose';
+import { IProducto } from '../models/Producto';
 import { ProductoService } from '../services/ProductoService';
 
 const productoService = new ProductoService();
@@ -49,10 +50,16 @@ export const createProducto = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'No se ha subido ningún archivo' });
     }
 
-    const producto = await productoService.createProducto({
-      ...body,
+    const data = {
+      name: req.body.name,
+      cantidad: req.body.cantidad,
+      medida: req.body.medida,
       imagenUrl: `${req.protocol}://${req.get('host')}/uploads/${file.filename}`,
-    });
+    } as IProducto;
+
+    console.log(data);
+    
+    const producto = await productoService.createProducto(data);
     res.status(201).json(producto);
   } catch (error) {
     res.status(500).json({ message: 'Error al crear producto', error });
