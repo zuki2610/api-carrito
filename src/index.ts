@@ -19,11 +19,7 @@ app.use('/api/productos', ProductoRouter);
 app.use('/uploads', express.static('uploads'));
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/myapp').then(() => {
-  console.log('Connected to MongoDB');
-}).catch((error) => {
-  console.error('Error connecting to MongoDB:', error.message);
-});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/myapp');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
